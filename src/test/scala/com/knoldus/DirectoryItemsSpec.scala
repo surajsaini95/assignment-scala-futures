@@ -23,13 +23,13 @@ class DirectoryItemsSpec extends FlatSpec with BeforeAndAfterAll {
   }
 
   "getDirectory method " should "return the directory from the path specified" in {
-    val dirName = "/home/knoldus/Downloads/sample"
+    val dirName = "src/main/resources/sample"
     val expectedDir = new File(dirName).listFiles.toList
     val actualDir = directoryItems.getDirectory(dirName)
     assert(expectedDir == actualDir)
   }
   "getDirectory method " should "will throw exception as path specified in incorrect" in {
-    val dirName = "/home/knoldus/Downloads/sampledemo"
+    val dirName = "src/main/resources/sampledemo"
     try {
       directoryItems.getDirectory(dirName)
     } catch {
@@ -37,13 +37,13 @@ class DirectoryItemsSpec extends FlatSpec with BeforeAndAfterAll {
     }
   }
   "getDirectoryItems method " should "return the list of items in directory from the path specified" in {
-    val dirName = "/home/knoldus/Downloads/sample"
+    val dirName = "src/main/resources/sample"
     val expectedDir = List("sample1/sam/1.scala", "sample1/1.scala", "ConvertCurrencies.scala")
     val actualDir = directoryItems.getDirectoryItems(new File(dirName).listFiles.toList, List.empty[String])
     assert(expectedDir == actualDir.map(_.split(dirName + "/", 2)(1)))
   }
   "getDirectoryItems method " should " throw exception as its a failure of future " in {
-    val dirName = "/home/knoldus/Downloads/sample"
+    val dirName = "src/main/resources/sample"
     try {
       directoryItems.getDirectoryItems(new File(dirName).listFiles.toList, List.empty[String])
     } catch {

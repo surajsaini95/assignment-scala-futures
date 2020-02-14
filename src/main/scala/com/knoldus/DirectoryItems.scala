@@ -34,7 +34,7 @@ class DirectoryItems {
   def getDirectoryItemsFromFuture(dirName: String): String = {
 
 
-    val absolutePath = "/home/knoldus/Downloads/"
+    val absolutePath = "src/main/resources/"
     val dir = getDirectory(absolutePath + dirName)
 
     val dirItems: Future[List[String]] = Future {
@@ -51,3 +51,38 @@ class DirectoryItems {
   }
 
 }
+
+/*
+
+object DirectoryItemsOb extends App {
+
+  val directoryItems = new DirectoryItems
+
+  //Thread.sleep(5000)
+  print(directoryItems.getDirectoryItemsFromFuture("sample"))
+}
+*/
+
+// Thread.sleep(5000)
+
+/*
+val absolutePath = "/home/knoldus/Downloads/"
+
+val dirName = "sample"
+val dir = directoryItems.getDirectory(absolutePath + dirName)
+
+val dirItems: Future[List[String]] = Future {
+  directoryItems.getDirectoryItems(dir, List.empty[String])
+}
+val timeInMilliSecond = 3000
+Thread.sleep(timeInMilliSecond)
+
+dirItems.onComplete {
+  case Success(items) => print(items.map(_.split(dirName + "/", 2)(1)))
+  case Failure(exception) => if (exception.isInstanceOf[Exception]) throw new Exception("Failure in future")
+}
+
+
+}
+
+*/
